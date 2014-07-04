@@ -1,6 +1,3 @@
-/*
-  ## Fields (DEPRECATED)
-*/
 define([
   'angular',
   'app',
@@ -34,7 +31,7 @@ function (angular, app, _) {
 
   module.filter('greet', function() {
     return function(name) {
-        return 'Hello, ' + name + '!';
+        return "<img src=\"http://img.tesco.com/Groceries/pi/971/5449000601971/IDShot_225x225.jpg\">"
     };
   });
 });
