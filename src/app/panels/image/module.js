@@ -32,7 +32,7 @@ function (angular, app, _) {
         $scope.search();
     };
 
-    var ejs = ejsResource('http://192.168.59.103:9200');
+    var ejs = ejsResource("http://"+window.location.hostname+":9200");
     var oQuery = ejs.QueryStringQuery().defaultField('imageUrl');
     var client = ejs.Request().indices('product').types('1');
 
