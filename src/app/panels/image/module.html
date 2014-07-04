@@ -1,4 +1,5 @@
-<div ng-controller='hello' ng-init="init()">
-    <img src="http://img.tesco.com/Groceries/pi/971/5449000601971/IDShot_225x225.jpg">
-    {{ 'World' | greet }}
+<div ng-controller='image' ng-init="init()">
+    <li ng-repeat="doc in results.hits.hits">
+        <img src="{{doc._source.imageUrl}}">
+     </li>
 </div>

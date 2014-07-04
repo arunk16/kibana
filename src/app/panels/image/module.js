@@ -6,32 +6,38 @@ define([
 function (angular, app, _) {
   'use strict';
 
-  var module = angular.module('kibana.panels.hello', []);
+  var module = angular.module('kibana.panels.image', []);
   app.useModule(module);
 
-  module.controller('hello', function($scope) {
+  module.controller('image', function($scope, ejsResource) {
 
     $scope.panelMeta = {
       status  : "Stable",
-      description : "Hello"
+      description : "Displays the product image"
     };
-
 
     // Set and populate defaults
     var _d = {
       style   : {},
       arrange : 'vertical',
+
+      queries     : {
+          mode        : 'all',
+          ids         : []
+      }
     };
     _.defaults($scope.panel,_d);
 
     $scope.init = function() {
-      // Place holder until I remove this
+        $scope.search();
     };
-  });
 
-  module.filter('greet', function() {
-    return function(name) {
-        return "<img src=\"http://img.tesco.com/Groceries/pi/971/5449000601971/IDShot_225x225.jpg\">"
+    var ejs = ejsResource('http://192.168.59.103:9200');
+    var oQuery = ejs.QueryStringQuery().defaultField('imageUrl');
+    var client = ejs.Request().indices('product').types('1');
+
+    $scope.search = function() {
+        $scope.results = client.query(oQuery.query('*')).doSearch();
     };
   });
 });
