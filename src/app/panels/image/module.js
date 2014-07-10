@@ -33,7 +33,7 @@ function (angular, app, _) {
     };
 
     var ejs = ejsResource("http://"+window.location.hostname+":9200");
-    var oQuery = ejs.QueryStringQuery().defaultField('entityData.imageUrl');
+    var oQuery = ejs.QueryStringQuery().defaultField('imageUrl');
     var client = ejs.Request().indices('tesco_product_details_extracted_data').types('tesco_product_details_extracted_page_data');
 
     $scope.search = function() {
